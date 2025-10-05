@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="manifest" href="manifest.json">
+<title>MedFind</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>MedFind</h1>
+  <p class="muted">Find medicines fast — add name, compartment, optional barcode. Installable PWA.</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Add / Edit Medicine</h2>
+    <form id="medForm">
+      <input type="hidden" id="medId" />
+      <label>Medicine name
+        <input id="name" required placeholder="e.g. Paracetamol 500mg" />
+      </label>
+      <label>Compartment
+        <input id="compartment" required placeholder="e.g. Shelf A3 / Compartment 42" />
+      </label>
+      <label>Barcode (optional)
+        <input id="barcode" placeholder="EAN-13 or any code (optional)" />
+      </label>
+      <div class="row small">
+        <button id="scanBtn" type="button">📷 Scan Barcode</button>
+        <button id="saveBtn" type="submit">Save</button>
+        <button id="clearBtn" type="button" class="secondary">Clear</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Find Medicine</h2>
+    <input id="search" placeholder="Search by medicine name, compartment or barcode" />
+    <div class="row small">
+      <button id="exportBtn">Export CSV</button>
+      <input id="importFile" type="file" accept=".csv" />
+      <button id="clearAll" class="danger">Clear All</button>
+    </div>
+    <ul id="list"></ul>
+  </section>
+</main>
+
+<!-- Scanner modal -->
+<div id="scannerModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <h3>Scan Barcode</h3>
+    <video id="video" autoplay muted playsinline></video>
+    <div class="row small">
+      <button id="stopScan" class="secondary">Stop</button>
+    </div>
+    <p class="muted">Uses device camera. Works best on Chrome/Android. If your browser doesn't support camera scanning, try PWABuilder-generated APK.</p>
+  </div>
+</div>
+
+<footer>
+  <small>Offline-first PWA • Data stored locally (IndexedDB) • Made for medicine shops</small>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
